@@ -1,0 +1,12 @@
+<!doctype html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <title>overload_script.py</title>
+  <meta name="generator" content="CherryTree">
+  <link rel="stylesheet" href="res/styles4.css" type="text/css" />
+</head>
+<body>
+<div class='page'><h1 class='title'>overload_script.py</h1><br/><pre><span style="color:#333333;font-weight:400">import</span> argparse<br /><span style="color:#333333;font-weight:400">import</span> os<br /><br /><span style="color:#333333;font-weight:400">from</span> <span style="color:#333333;font-weight:400">numpy</span> <span style="color:#333333;font-weight:400">import</span> char<br /><br /><span style="color:#0088ff;font-weight:400"># Command line arguments parsing</span><br />parser = argparse.ArgumentParser()<br />parser.add_argument(<span style="color:#3ad900;font-weight:400">&quot;-f&quot;</span>, <span style="color:#3ad900;font-weight:400">&quot;--file&quot;</span>, help=<span style="color:#3ad900;font-weight:400">&quot;Target file&quot;</span>, required=<span style="color:#ff0044;font-weight:400">True</span>)<br />parser.add_argument(<span style="color:#3ad900;font-weight:400">&quot;-n&quot;</span>, <span style="color:#3ad900;font-weight:400">&quot;--number&quot;</span>, help=<span style="color:#3ad900;font-weight:400">&quot;Number of characters to overload&quot;</span>, required=<span style="color:#ff0044;font-weight:400">True</span>)<br />args = parser.parse_args()<br /><br /><span style="color:#0088ff;font-weight:400"># Create the overflow string</span><br />char_seq = <span style="color:#3ad900;font-weight:400">&quot;A&quot;</span> * <span style="color:#ff9d00;font-weight:700">int</span>(args.number)<br /><br /><span style="color:#0088ff;font-weight:400"># If the target file exists, execute it and write &#39;char_seq&#39; as its input</span><br /><span style="color:#ff9d00;font-weight:700">if</span> (os.path.exists(args.file)):<br />    <span style="color:#0088ff;font-weight:400"># Execute the file with char_seq as input  </span><br />    os.system(<span style="color:#3ad900;font-weight:400">&quot;echo &quot;</span> + char_seq + <span style="color:#3ad900;font-weight:400">&quot; | ./&quot;</span> + args.file)<br /><span style="color:#ff9d00;font-weight:700">else</span>:<br />    <span style="color:#ff9d00;font-weight:700">print</span>(char_seq)<br />    <span style="color:#ff9d00;font-weight:700">print</span>(<span style="color:#3ad900;font-weight:400">&quot;[!] File not found&quot;</span>)</pre></div>
+</body>
+</html>

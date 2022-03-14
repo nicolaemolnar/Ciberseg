@@ -1,0 +1,12 @@
+<!doctype html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <title>WireShark</title>
+  <meta name="generator" content="CherryTree">
+  <link rel="stylesheet" href="res/styles4.css" type="text/css" />
+</head>
+<body>
+<div class='page'><h1 class='title'>WireShark</h1><br/>When we open the file <em><strong>flag.pcapng</strong></em> we can see the following traces:<br /><a href=""><img src="images/16-1.png" alt="images/16-1.png" /></a><br />First, we find traces related with the local DNS assignment of the target computer. After that, we see a 3-step connection to the web page <em><strong>http://geronimo.malware</strong></em>, also notice that the trace 10 contains a special text in the post header, this trace reveals the flag <em><strong>flag{sigue_asi}</strong></em>.<br /><br />Also, in that same trace, notice that <a href="reto-seleccion--WireShark.html">WireShark</a> displays the message <em><strong>(JPEG JFIF Image)</strong></em> which means that the packet contains a <em>JPEG</em> image. Let&#39;s try downloading that image from the packet&#39;s body:<br /><a href=""><img src="images/16-2.png" alt="images/16-2.png" /></a><br />In the image above we go to the trace 10, open the <em>MIME Multipart Media Encaps.</em> section and look for the <em>JPEG File Interchange Format</em> field. Rigth-Click that title and select <em>Export bytes from package</em>, this will display a popup where we will save the image as <em><strong>flag3.jpeg</strong></em>. <br /><br />Finally, we open the downloaded image with any image viewer, and obtain the 4th flag: <em><strong>flag{welcome_to_stego}</strong></em><br /><a href=""><img src="images/16-3.png" alt="images/16-3.png" /></a><br /></div>
+</body>
+</html>

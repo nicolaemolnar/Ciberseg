@@ -1,0 +1,12 @@
+<!doctype html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <title>First-Contact</title>
+  <meta name="generator" content="CherryTree">
+  <link rel="stylesheet" href="res/styles4.css" type="text/css" />
+</head>
+<body>
+<div class='page'><h1 class='title'>First-Contact</h1><br/><strong>Type of File</strong>: ELF 64-bit LSB executable, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, not stripped (<em>file</em> command)<br /><strong>Execution</strong>:<br />	- <strong>Input</strong>: None<br />	- <strong>Output</strong>: <em>“La clave no es flag{ASM} }:)”</em><br /><strong>Contents</strong>:<br />	- In order to have a better understanding of the file, let&#39;s have a look at its contents, starting with cat.<br />	- <em>Cat</em> command output:<br />	<a href=""><img src="images/4-1.png" alt="images/4-1.png" /></a><br />	- 2 Relevant strings: <br />		- <em>La </em><em><span style="text-decoration:underline;">clave </span></em><em>no es flag{</em><em><span style="text-decoration:underline;">ASM</span></em><em>} }:)</em><br />		- <em>La </em><em><span style="text-decoration:underline;">flag</span></em><em> no es flag{</em><em><span style="text-decoration:underline;">asm</span></em><em>} }:)</em><br />	- The previous strings are barely different, but this difference may be a hint to find the flag. ¿What is ASM/asm?<br />		- ASM seems to fit for assembly code. I find no obvious relation between ASM and asm but the ascii difference between caps.<br />		- The strings command shows <em>“the.asm”</em>  which we can assume to be an assembly file, maybe hidden in the elf.<br />	- The file seems to have explicit strings in it, lets have a better look with the <em>strings</em> command:<br />	<a href=""><img src="images/4-2.png" alt="images/4-2.png" /></a><br />	- Although the output continues, the relevant data is shown above. First, we notice a series of strings “flagX” with X in [1,25] and a string “the_flag”, we suppose these are variable names whose content we could see in gdb later.<br />	- Also, notice that from the 2 strings we recovered in the cat command, only one is visible by the command strings. This is, the strings with “asm” instead of “ASM” is not declared as an explicit string, or hidden somehow. “La flag no es flag{asm} }:)” has become a potential hint to find the flag.</div>
+</body>
+</html>
